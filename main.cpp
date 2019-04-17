@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include "game_engine.h"
 
 sf::RenderWindow * createWindow() {
-    int width = 400;
-    int height = 600;
+    int width = 500;
+    int height = 700;
     
     sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(width, height), "Jektris", sf::Style::None);
     
@@ -18,20 +19,9 @@ sf::RenderWindow * createWindow() {
 int main()
 {
     sf::RenderWindow * window = createWindow();
-
-    while (window->isOpen())
-    {
-        sf::Event event;
-        while (window->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window->close();
-            
-            if (event.type == sf::Event::KeyPressed) {
-                window->close();
-            }
-        }
-    }
+    
+    GameEngine engine(window);
+    engine.run();
 
     return 0;
 }
